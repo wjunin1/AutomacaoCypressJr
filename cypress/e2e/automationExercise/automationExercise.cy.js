@@ -20,6 +20,7 @@ import {
 } from "/cypress/fixtures/automationExercise/user1.json";
 import Navbar from "../../pages-objects/automationExercise/components/Navbar";
 import singup from "../../pages-objects/automationExercise/page/singup";
+import newUser from "../../pages-objects/automationExercise/page/newUser";
 
 beforeEach(() => {
   //1. Launch browser
@@ -75,4 +76,21 @@ describe("Test Case 1: Register User", () => {
   });
 });
 
+describe("Test Case 2: Login User with correct email and password", () => {
+  before(() => {
+    newUser.newUser();
+  });
+  it("Login and delete account", () => {
+ //4. Click on 'Signup / Login' button
+ Navbar.singupLogin();
+ // 5. Verify 'Login to your account' is visible
+ singup.checkloginToAccount();
+ // 6. Enter correct email address and password
+ // 7. Click 'login' button
+ // 8. Verify that 'Logged in as username' is visible
+ // 9. Click 'Delete Account' button
+ // 10. Verify that 'ACCOUNT DELETED!' is visible
 
+  });
+ 
+});

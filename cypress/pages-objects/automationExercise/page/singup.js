@@ -3,6 +3,10 @@ export default class singup {
     cy.contains("New User Signup!").should("be.visible");
   }
 
+  static checkloginToAccount() {
+    cy.contains("Login to your account").should("be.visible");
+  }
+
   static enterNameEmailNewRegister(name, email) {
     cy.get('[data-qa="signup-name"').type(name);
     cy.get('[data-qa="signup-email"').type(email);
