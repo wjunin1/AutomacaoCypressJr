@@ -1,0 +1,19 @@
+{
+  "name": "automacaocypressjr",
+  "version": "1.0.0",
+  "main": "index.js",
+  "devDependencies": {
+    "cypress": "^12.10.0"
+  },
+  "scripts": {
+    "cypress:open": "npx cypress open"
+  },
+  "keywords": [],
+  "author": "Wellington Júnior",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "@badeball/cypress-cucumber-preprocessor": "^16.0.3"
+  }
+}
+
