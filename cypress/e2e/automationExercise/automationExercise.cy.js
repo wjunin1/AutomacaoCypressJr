@@ -9,20 +9,28 @@ import {
   year,
   firstName,
   lastName,
+  company,
+  address1,
+  address2,
+  country,
+  state,
+  city,
+  zipcode,
+  mobileNumber,
 } from "/cypress/fixtures/automationExercise/user1.json";
 import Navbar from "../../pages-objects/automationExercise/components/Navbar";
 import singup from "../../pages-objects/automationExercise/page/singup";
 
-describe("Test Case 1: Register User", () => {
+beforeEach(() => {
   //1. Launch browser
-  beforeEach(() => {
-    //2. Navigate to url 'http://automationexercise.com'
-    mainPage.login(automationExercise);
-  });
+  //2. Navigate to url 'http://automationexercise.com'
+  mainPage.login(automationExercise);
+  //3. Verify that home page is visible successfully
+  mainPage.checkImgVisible();
+});
 
-  it("login", () => {
-    //3. Verify that home page is visible successfully
-    mainPage.checkImgVisible();
+describe("Test Case 1: Register User", () => {
+  it("Create Account and delete", () => {
     //4. Click on 'Signup / Login' button
     Navbar.singupLogin();
     //5. Verify 'New User Signup!' is visible
@@ -40,13 +48,31 @@ describe("Test Case 1: Register User", () => {
     // 11. Select checkbox 'Receive special offers from our partners!'
     singup.acceptRecieveSpecial();
     // 12. Fill details: First name, Last name, Company, Address, Address2, Country, State, City, Zipcode, Mobile Number
-    // cy.get('data-qa="first_name"').type(firstName);
-    // cy.get('data-qa="last_name"').type(lastName);
+    singup.adressInformation(
+      firstName,
+      lastName,
+      company,
+      address1,
+      address2,
+      country,
+      state,
+      city,
+      zipcode,
+      mobileNumber
+    );
     // 13. Click 'Create Account button'
+    singup.accountCreateButton();
     // 14. Verify that 'ACCOUNT CREATED!' is visible
+    singup.accountCreateConfirm();
     // 15. Click 'Continue' button
+    singup.continueButton();
     // 16. Verify that 'Logged in as username' is visible
+    Navbar.loggedValidade(name);
     // 17. Click 'Delete Account' button
+    Navbar.buttonDeleteUser();
     // 18. Verify that 'ACCOUNT DELETED!' is visible and click 'Continue' button
+    mainPage.accountDeleted();
   });
 });
+
+

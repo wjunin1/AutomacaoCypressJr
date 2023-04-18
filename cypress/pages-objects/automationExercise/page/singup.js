@@ -31,4 +31,40 @@ export default class singup {
   static acceptRecieveSpecial() {
     cy.get("#optin").check();
   }
+
+  static adressInformation(
+    firstName,
+    lastName,
+    company,
+    address1,
+    address2,
+    country,
+    state,
+    city,
+    zipcode,
+    mobileNumber
+  ) {
+    cy.get('[data-qa="first_name"]').type(firstName);
+    cy.get('[data-qa="last_name"]').type(lastName);
+    cy.get('[data-qa="company"]').type(company);
+    cy.get('[data-qa="address"]').type(address1);
+    cy.get('[data-qa="address2"]').type(address2);
+    cy.get('[data-qa="country"]').select(country).as("county");
+    cy.get('[data-qa="state"]').type(state);
+    cy.get('[data-qa="city"]').type(city);
+    cy.get('[data-qa="zipcode"]').type(zipcode);
+    cy.get('[data-qa="mobile_number"]').type(mobileNumber);
+  }
+
+  static accountCreateButton() {
+    cy.get('[data-qa="create-account"]').click();
+  }
+
+  static accountCreateConfirm() {
+    cy.contains("Account Created!").should("be.visible");
+  }
+
+  static continueButton() {
+    cy.get('[data-qa="continue-button"]').click();
+  }
 }
