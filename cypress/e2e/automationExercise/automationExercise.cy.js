@@ -119,3 +119,18 @@ describe("Test Case 2: Login User with correct email and password", () => {
     mainPage.accountDeleted();
   });
 });
+
+describe("Test Case 3: Login User with incorrect email and password", () => {
+  it("Incorrect email and password", () => {
+    // 4. Click on 'Signup / Login' button
+    Navbar.singupLogin();
+    // 5. Verify 'Login to your account' is visible
+    singup.checkloginToAccount();
+    // 6. Enter incorrect email address and password
+    singup.loginAcess('Incorrectemail@email', '1234');
+    // 7. Click 'login' button
+    singup.buttonLogin();
+    // 8. Verify error 'Your email or password is incorrect!' is visible
+    singup.incorrectLogin();
+  });
+});
