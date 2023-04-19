@@ -14,5 +14,8 @@
   "state": "DF",
   "city": "Brasilia",
   "zipcode": "72318-306",
-  "mobileNumber": "5561981451032"
+  "mobileNumber": "5561981451032",
+  "nomefixo": "Teste fixo",
+  "emailfixo": "fixo@teste.com",
+  "passwordfixo": "jr2311"
 }

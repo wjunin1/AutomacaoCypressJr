@@ -17,10 +17,12 @@ import {
   city,
   zipcode,
   mobileNumber,
+  emailfixo,
+  passwordfixo,
+  nomefixo,
 } from "/cypress/fixtures/automationExercise/user1.json";
 import Navbar from "../../pages-objects/automationExercise/components/Navbar";
 import singup from "../../pages-objects/automationExercise/page/singup";
-
 beforeEach(() => {
   //1. Launch browser
   //2. Navigate to url 'http://automationexercise.com'
@@ -127,10 +129,29 @@ describe("Test Case 3: Login User with incorrect email and password", () => {
     // 5. Verify 'Login to your account' is visible
     singup.checkloginToAccount();
     // 6. Enter incorrect email address and password
-    singup.loginAcess('Incorrectemail@email', '1234');
+    singup.loginAcess("Incorrectemail@email", "1234");
     // 7. Click 'login' button
     singup.buttonLogin();
     // 8. Verify error 'Your email or password is incorrect!' is visible
     singup.incorrectLogin();
+  });
+});
+
+describe("Test Case 4: Logout User", () => {
+  it("Logout", () => {
+    // 4. Click on 'Signup / Login' button
+    Navbar.singupLogin();
+    // 5. Verify 'Login to your account' is visible
+    singup.checkloginToAccount();
+    // 6. Enter correct email address and password
+    singup.loginAcess(emailfixo, passwordfixo);
+    // 7. Click 'login' button
+    singup.buttonLogin();
+    // 8. Verify that 'Logged in as username' is visible
+    Navbar.loggedValidade(nomefixo);
+    // 9. Click 'Logout' button
+    Navbar.logoutButton();
+    // 10. Verify that user is navigated to login page
+    Navbar.validadeUrlLogin();
   });
 });

@@ -10,4 +10,12 @@ export default class Navbar {
   static buttonDeleteUser() {
     cy.contains(" Delete Account").click();
   }
+
+  static logoutButton() {
+    cy.contains(" Logout").click();
+  }
+
+  static validadeUrlLogin() {
+    cy.url().should("include", "/login");
+  }
 }

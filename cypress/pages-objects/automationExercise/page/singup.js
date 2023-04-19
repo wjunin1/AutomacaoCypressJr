@@ -81,7 +81,7 @@ export default class singup {
     cy.get('[data-qa="login-button"]').click();
   }
 
-  static incorrectLogin(){
-    cy.contains("Your email or password is incorrect!").should('be.visible');
+  static incorrectLogin() {
+    cy.contains("Your email or password is incorrect!").should("be.visible");
   }
 }
