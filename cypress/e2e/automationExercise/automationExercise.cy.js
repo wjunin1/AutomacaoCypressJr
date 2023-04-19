@@ -20,7 +20,6 @@ import {
 } from "/cypress/fixtures/automationExercise/user1.json";
 import Navbar from "../../pages-objects/automationExercise/components/Navbar";
 import singup from "../../pages-objects/automationExercise/page/singup";
-import newUser from "../../pages-objects/automationExercise/page/newUser";
 
 beforeEach(() => {
   //1. Launch browser
@@ -77,20 +76,46 @@ describe("Test Case 1: Register User", () => {
 });
 
 describe("Test Case 2: Login User with correct email and password", () => {
-  before(() => {
-    newUser.newUser();
+  it("new user", () => {
+    Navbar.singupLogin();
+    singup.checkSingup();
+    singup.enterNameEmailNewRegister(name, email);
+    singup.buttonSingup();
+    singup.newAccountValidate();
+    singup.accountDetails(password, day, month, year);
+    singup.acceptNewsletter();
+    singup.acceptRecieveSpecial();
+    singup.adressInformation(
+      firstName,
+      lastName,
+      company,
+      address1,
+      address2,
+      country,
+      state,
+      city,
+      zipcode,
+      mobileNumber
+    );
+    singup.accountCreateButton();
+    singup.accountCreateConfirm();
+    singup.continueButton();
+    Navbar.loggedValidade(name);
   });
   it("Login and delete account", () => {
- //4. Click on 'Signup / Login' button
- Navbar.singupLogin();
- // 5. Verify 'Login to your account' is visible
- singup.checkloginToAccount();
- // 6. Enter correct email address and password
- // 7. Click 'login' button
- // 8. Verify that 'Logged in as username' is visible
- // 9. Click 'Delete Account' button
- // 10. Verify that 'ACCOUNT DELETED!' is visible
-
+    //4. Click on 'Signup / Login' button
+    Navbar.singupLogin();
+    // 5. Verify 'Login to your account' is visible
+    singup.checkloginToAccount();
+    // 6. Enter correct email address and password
+    singup.loginAcess(email, password);
+    // 7. Click 'login' button
+    singup.buttonLogin();
+    // 8. Verify that 'Logged in as username' is visible
+    Navbar.loggedValidade(name);
+    // 9. Click 'Delete Account' button
+    Navbar.buttonDeleteUser();
+    // 10. Verify that 'ACCOUNT DELETED!' is visible
+    mainPage.accountDeleted();
   });
- 
 });

@@ -71,4 +71,13 @@ export default class singup {
   static continueButton() {
     cy.get('[data-qa="continue-button"]').click();
   }
+
+  static loginAcess(email, password) {
+    cy.get('[data-qa="login-email"]').type(email);
+    cy.get('[data-qa="login-password"]').type(password);
+  }
+
+  static buttonLogin() {
+    cy.get('[data-qa="login-button"]').click();
+  }
 }
