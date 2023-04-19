@@ -30,6 +30,7 @@ import {
   contactSubject,
   contactMessage,
 } from "/cypress/fixtures/automationExercise/contactMensage.json";
+import testCases from "../../pages-objects/automationExercise/page/testCases";
 beforeEach(() => {
   //1. Launch browser
   //2. Navigate to url 'http://automationexercise.com'
@@ -179,7 +180,7 @@ describe("Test Case 5: Register User with existing email", () => {
 });
 
 describe("Test Case 6: Contact Us Form", () => {
-  it.only("Contact us", () => {
+  it("Contact us", () => {
     // 4. Click on 'Contact Us' button
     Navbar.contactUs();
     // 5. Verify 'GET IN TOUCH' is visible
@@ -202,4 +203,13 @@ describe("Test Case 6: Contact Us Form", () => {
     // 11. Click 'Home' button and verify that landed to home page successfully
     contactUs.buttonHome();
   });
+});
+
+describe('Test Case 7: Verify Test Cases Page', () => {
+    it('Test Cases Page', () => {
+      // 4. Click on 'Test Cases' button
+      Navbar.testCase();
+      // 5. Verify user is navigated to test cases page successfully
+      testCases.testCase();
+    });
 });

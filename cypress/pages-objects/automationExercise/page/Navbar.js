@@ -22,4 +22,8 @@ export default class Navbar {
   static contactUs() {
     cy.contains(" Contact us").click();
   }
+
+  static testCase(){
+    cy.contains(' Test Cases').click();
+  }
 }
