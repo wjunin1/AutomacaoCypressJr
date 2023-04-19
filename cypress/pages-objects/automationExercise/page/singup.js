@@ -84,4 +84,8 @@ export default class singup {
   static incorrectLogin() {
     cy.contains("Your email or password is incorrect!").should("be.visible");
   }
+
+  static emailExist() {
+    cy.contains("Email Address already exist!").should("be.visible");
+  }
 }

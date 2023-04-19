@@ -155,3 +155,18 @@ describe("Test Case 4: Logout User", () => {
     Navbar.validadeUrlLogin();
   });
 });
+
+describe("Test Case 5: Register User with existing email", () => {
+  it.only("Register user with existing email", () => {
+    // 4. Click on 'Signup / Login' button
+    Navbar.singupLogin();
+    // 5. Verify 'New User Signup!' is visible
+    singup.checkloginToAccount();
+    // 6. Enter name and already registered email address
+    singup.enterNameEmailNewRegister(name, emailfixo);
+    // 7. Click 'Signup' button
+    singup.buttonSingup();
+    // 8. Verify error 'Email Address already exist!' is visible
+    singup.emailExist();
+  });
+});
