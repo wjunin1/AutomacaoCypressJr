@@ -21,8 +21,15 @@ import {
   passwordfixo,
   nomefixo,
 } from "/cypress/fixtures/automationExercise/user1.json";
-import Navbar from "../../pages-objects/automationExercise/components/Navbar";
+import Navbar from "../../pages-objects/automationExercise/page/Navbar";
 import singup from "../../pages-objects/automationExercise/page/singup";
+import contactUs from "../../pages-objects/automationExercise/page/contactUs";
+import {
+  contactName,
+  contactEmail,
+  contactSubject,
+  contactMessage,
+} from "/cypress/fixtures/automationExercise/contactMensage.json";
 beforeEach(() => {
   //1. Launch browser
   //2. Navigate to url 'http://automationexercise.com'
@@ -157,7 +164,7 @@ describe("Test Case 4: Logout User", () => {
 });
 
 describe("Test Case 5: Register User with existing email", () => {
-  it.only("Register user with existing email", () => {
+  it("Register user with existing email", () => {
     // 4. Click on 'Signup / Login' button
     Navbar.singupLogin();
     // 5. Verify 'New User Signup!' is visible
@@ -168,5 +175,31 @@ describe("Test Case 5: Register User with existing email", () => {
     singup.buttonSingup();
     // 8. Verify error 'Email Address already exist!' is visible
     singup.emailExist();
+  });
+});
+
+describe("Test Case 6: Contact Us Form", () => {
+  it.only("Contact us", () => {
+    // 4. Click on 'Contact Us' button
+    Navbar.contactUs();
+    // 5. Verify 'GET IN TOUCH' is visible
+    contactUs.validateContact();
+    // 6. Enter name, email, subject and message
+    contactUs.touchBody(
+      contactName,
+      contactEmail,
+      contactSubject,
+      contactMessage
+    );
+    // 7. Upload file
+    contactUs.uploadFileContactUs();
+    // 8. Click 'Submit' button
+    contactUs.submitButton();
+    // 9. Click OK button
+    // contactUs.pressEnter();
+    // 10. Verify success message 'Success! Your details have been submitted successfully.' is visible
+    contactUs.validateSuccess();
+    // 11. Click 'Home' button and verify that landed to home page successfully
+    contactUs.buttonHome();
   });
 });

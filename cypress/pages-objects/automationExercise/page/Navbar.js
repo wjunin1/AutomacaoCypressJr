@@ -18,4 +18,8 @@ export default class Navbar {
   static validadeUrlLogin() {
     cy.url().should("include", "/login");
   }
+
+  static contactUs() {
+    cy.contains(" Contact us").click();
+  }
 }
