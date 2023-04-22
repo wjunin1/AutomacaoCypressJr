@@ -20,4 +20,8 @@ export default class mainPage {
     cy.get("#susbscribe_email").type(value);
     cy.get("#subscribe").click();
   }
+
+  static viewProduct() {
+    cy.contains("View Product").click();
+  }
 }

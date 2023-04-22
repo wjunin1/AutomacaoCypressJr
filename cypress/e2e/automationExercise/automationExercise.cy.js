@@ -277,7 +277,7 @@ describe("Test Case 11: Verify Subscription in Cart page", () => {
 });
 
 describe("Test Case 12: Add Products in Cart", () => {
-  it.only("Add Products in Cart", () => {
+  it("Add Products in Cart", () => {
     // 4. Click 'Products' button
     Navbar.productPage();
     // 5. Hover over first product and click 'Add to cart'
@@ -292,5 +292,22 @@ describe("Test Case 12: Add Products in Cart", () => {
     viewCart.quantityCartProduct();
     // 10. Verify their prices, quantity and total price
     viewCart.verifyProductDetails();
+  });
+});
+
+describe("Test Case 13: Verify Product quantity in Cart", () => {
+  it.only("Verify Product quantity in Cart", () => {
+    // 4. Click 'View Product' for any product on home page
+    mainPage.viewProduct();
+    // 5. Verify product detail is opened
+    cy.ccValidateUrl("/product_details/1");
+    // 6. Increase quantity to 4
+    productPage.addProductQuantity(4);
+    // 7. Click 'Add to cart' button
+    productPage.addToCart();
+    // 8. Click 'View Cart' button
+    productPage.productConfirmationCart("View Cart");
+    // 9. Verify that product is displayed in cart page with exact quantity
+    viewCart.validateQuantity(4);
   });
 });

@@ -11,4 +11,8 @@ export default class viewCart {
     cy.get("#product-1 > .cart_total > .cart_total_price").contains("Rs. 500");
     cy.get("#product-2 > .cart_total > .cart_total_price").contains("Rs. 400");
   }
+
+  static validateQuantity(qtd) {
+    cy.get("#product-1 > .cart_quantity > .disabled").contains(qtd);
+  }
 }

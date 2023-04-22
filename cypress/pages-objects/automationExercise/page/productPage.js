@@ -26,11 +26,20 @@ export default class productPage {
     cy.contains("Blue Top").should("not.exist");
   }
 
-  static addProductToCart(prod){
-    cy.get('.add-to-cart').eq(prod).click();
+  static addProductToCart(prod) {
+    cy.get(".add-to-cart").eq(prod).click();
   }
 
- static productConfirmationCart(button){
-  cy.contains(button).click();
- }
+  static productConfirmationCart(button) {
+    cy.contains(button).click();
+  }
+
+  static addProductQuantity(qtd) {
+    cy.get("#quantity").clear();
+    cy.get("#quantity").type(qtd);
+  }
+
+  static addToCart() {
+    cy.contains("Add to cart").click();
+  }
 }
