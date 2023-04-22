@@ -216,7 +216,7 @@ describe("Test Case 7: Verify Test Cases Page", () => {
 });
 
 describe("Test Case 8: Verify All Products and product detail page", () => {
-  it.only("Product page", () => {
+  it("Product page", () => {
     // 4. Click on 'Products' button
     Navbar.productPage();
     // 5. Verify user is navigated to ALL PRODUCTS page successfully
@@ -229,5 +229,20 @@ describe("Test Case 8: Verify All Products and product detail page", () => {
     cy.ccValidateUrl("/product_details/1");
     // 9. Verify that detail detail is visible: product name, category, price, availability, condition, brand
     productPage.productDetail();
+  });
+});
+
+describe("Test Case 9: Search Product", () => {
+  it.only("Search Product", () => {
+    // 4. Click on 'Products' button
+    Navbar.productPage();
+    // 5. Verify user is navigated to ALL PRODUCTS page successfully
+    cy.ccContainsVisible("All Products");
+    // 6. Enter product name in search input and click search button
+    productPage.productSearch("Winter Top");
+    // 7. Verify 'SEARCHED PRODUCTS' is visible
+    cy.ccContainsVisible("Winter Top");
+    // 8. Verify all the products related to search are visible
+    productPage.productSearchNotVisible();
   });
 });

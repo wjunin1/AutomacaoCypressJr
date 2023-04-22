@@ -16,5 +16,13 @@ export default class productPage {
       cy.contains(value).should("be.visible");
     });
   }
-  
+
+  static productSearch(productName) {
+    cy.get("#search_product").type(productName);
+    cy.get("#submit_search").click();
+  }
+
+  static productSearchNotVisible() {
+    cy.contains("Blue Top").should("not.exist");
+  }
 }
