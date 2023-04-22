@@ -25,4 +25,12 @@ export default class productPage {
   static productSearchNotVisible() {
     cy.contains("Blue Top").should("not.exist");
   }
+
+  static addProductToCart(prod){
+    cy.get('.add-to-cart').eq(prod).click();
+  }
+
+ static productConfirmationCart(button){
+  cy.contains(button).click();
+ }
 }

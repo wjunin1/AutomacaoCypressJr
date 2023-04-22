@@ -32,6 +32,7 @@ import {
 } from "/cypress/fixtures/automationExercise/contactMensage.json";
 import testCases from "../../pages-objects/automationExercise/page/testCases";
 import productPage from "../../pages-objects/automationExercise/page/productPage";
+import viewCart from "../../pages-objects/automationExercise/page/viewCart";
 beforeEach(() => {
   //1. Launch browser
   //2. Navigate to url 'http://automationexercise.com'
@@ -248,7 +249,7 @@ describe("Test Case 9: Search Product", () => {
 });
 
 describe("Test Case 10: Verify Subscription in home page", () => {
-  it.only("Subscription in home", () => {
+  it("Subscription in home", () => {
     // 4. Scroll down to footer
     mainPage.scrollRoll("bottom");
     // 5. Verify text 'SUBSCRIPTION'
@@ -265,12 +266,31 @@ describe("Test Case 11: Verify Subscription in Cart page", () => {
     // 4. Click 'Cart' button
     Navbar.cartPage();
     // 5. Scroll down to footer
-    mainPage.scrollRoll("bottom");
+    // mainPage.scrollRoll("bottom"); Tela sem produtos fica pequena e não precisa
     // 6. Verify text 'SUBSCRIPTION'
     cy.ccContainsVisible("Subscription");
     // 7. Enter email address in input and click arrow button
     mainPage.subscriptionEmail(emailfixo);
     // 8. Verify success message 'You have been successfully subscribed!' is visible
     cy.ccContainsVisible("You have been successfully subscribed!");
+  });
+});
+
+describe("Test Case 12: Add Products in Cart", () => {
+  it.only("Add Products in Cart", () => {
+    // 4. Click 'Products' button
+    Navbar.productPage();
+    // 5. Hover over first product and click 'Add to cart'
+    productPage.addProductToCart(0);
+    // 6. Click 'Continue Shopping' button
+    productPage.productConfirmationCart("Continue Shopping");
+    // 7. Hover over second product and click 'Add to cart'
+    productPage.addProductToCart(2);
+    // 8. Click 'View Cart' button
+    productPage.productConfirmationCart("View Cart");
+    // 9. Verify both products are added to Cart
+    viewCart.quantityCartProduct();
+    // 10. Verify their prices, quantity and total price
+    viewCart.verifyProductDetails();
   });
 });
