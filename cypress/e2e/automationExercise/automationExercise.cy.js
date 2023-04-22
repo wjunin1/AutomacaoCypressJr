@@ -296,7 +296,7 @@ describe("Test Case 12: Add Products in Cart", () => {
 });
 
 describe("Test Case 13: Verify Product quantity in Cart", () => {
-  it.only("Verify Product quantity in Cart", () => {
+  it("Verify Product quantity in Cart", () => {
     // 4. Click 'View Product' for any product on home page
     mainPage.viewProduct();
     // 5. Verify product detail is opened
@@ -309,5 +309,61 @@ describe("Test Case 13: Verify Product quantity in Cart", () => {
     productPage.productConfirmationCart("View Cart");
     // 9. Verify that product is displayed in cart page with exact quantity
     viewCart.validateQuantity(4);
+  });
+});
+
+describe("Test Case 14: Place Order: Register while Checkout", () => {
+  it.only("Place order", () => {
+    // 4. Add products to cart
+    productPage.addProductToCart(2);
+    productPage.productConfirmationCart("Continue Shopping");
+    productPage.addProductToCart(4);
+    productPage.productConfirmationCart("Continue Shopping");
+    productPage.addProductToCart(14);
+    productPage.productConfirmationCart("Continue Shopping");
+    productPage.addProductToCart(18);
+    productPage.productConfirmationCart("Continue Shopping");
+    // 5. Click 'Cart' button
+    Navbar.cartPage();
+    // 6. Verify that cart page is displayed
+    cy.ccContainsVisible("Shopping Cart");
+    // 7. Click Proceed To Checkout
+    viewCart.proceedToCheckout();
+    // 8. Click 'Register / Login' button
+    viewCart.modalCheckoutToRegister();
+    // 9. Fill all details in Signup and create account
+    singup.enterNameEmailNewRegister(name, email);
+    singup.buttonSingup();
+    singup.accountDetails(password, day, month, year);
+    singup.adressInformation(
+      firstName,
+      lastName,
+      company,
+      address1,
+      address2,
+      country,
+      state,
+      city,
+      zipcode,
+      mobileNumber
+    );
+    singup.accountCreateButton();
+    // 10. Verify 'ACCOUNT CREATED!' and click 'Continue' button
+    singup.accountCreateConfirm();
+    singup.continueButton();
+    // 11. Verify ' Logged in as username' at top
+    Navbar.loggedValidade(name);
+    // 12.Click 'Cart' button
+    Navbar.cartPage();
+    // 13. Click 'Proceed To Checkout' button
+    // 14. Verify Address Details and Review Your Order
+    // 15. Enter description in comment text area and click 'Place Order'
+    // 16. Enter payment details: Name on Card, Card Number, CVC, Expiration date
+    // 17. Click 'Pay and Confirm Order' button
+    // 18. Verify success message 'Your order has been placed successfully!'
+    // 19. Click 'Delete Account' button
+    Navbar.buttonDeleteUser();
+    // 20. Verify 'ACCOUNT DELETED!' and click 'Continue' button
+    mainPage.accountDeleted();
   });
 });

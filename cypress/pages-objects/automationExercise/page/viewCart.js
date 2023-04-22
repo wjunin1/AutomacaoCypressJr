@@ -15,4 +15,12 @@ export default class viewCart {
   static validateQuantity(qtd) {
     cy.get("#product-1 > .cart_quantity > .disabled").contains(qtd);
   }
+
+  static proceedToCheckout() {
+    cy.contains("Proceed To Checkout").click();
+  }
+
+  static modalCheckoutToRegister() {
+    cy.get('.modal-body > :nth-child(2) > a > u').click();
+  }
 }
