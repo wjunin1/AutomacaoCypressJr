@@ -233,7 +233,7 @@ describe("Test Case 8: Verify All Products and product detail page", () => {
 });
 
 describe("Test Case 9: Search Product", () => {
-  it.only("Search Product", () => {
+  it("Search Product", () => {
     // 4. Click on 'Products' button
     Navbar.productPage();
     // 5. Verify user is navigated to ALL PRODUCTS page successfully
@@ -244,5 +244,18 @@ describe("Test Case 9: Search Product", () => {
     cy.ccContainsVisible("Winter Top");
     // 8. Verify all the products related to search are visible
     productPage.productSearchNotVisible();
+  });
+});
+
+describe("Test Case 10: Verify Subscription in home page", () => {
+  it.only("Subscription in home", () => {
+    // 4. Scroll down to footer
+    mainPage.scrollRoll("bottom");
+    // 5. Verify text 'SUBSCRIPTION'
+    cy.ccContainsVisible("Subscription");
+    // 6. Enter email address in input and click arrow button
+    mainPage.subscriptionEmail(emailfixo);
+    // 7. Verify success message 'You have been successfully subscribed!' is visible
+    cy.ccContainsVisible("You have been successfully subscribed!");
   });
 });
