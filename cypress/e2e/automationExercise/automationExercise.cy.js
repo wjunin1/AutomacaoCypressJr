@@ -31,6 +31,7 @@ import {
   contactMessage,
 } from "/cypress/fixtures/automationExercise/contactMensage.json";
 import testCases from "../../pages-objects/automationExercise/page/testCases";
+import productPage from "../../pages-objects/automationExercise/page/productPage";
 beforeEach(() => {
   //1. Launch browser
   //2. Navigate to url 'http://automationexercise.com'
@@ -205,11 +206,28 @@ describe("Test Case 6: Contact Us Form", () => {
   });
 });
 
-describe('Test Case 7: Verify Test Cases Page', () => {
-    it('Test Cases Page', () => {
-      // 4. Click on 'Test Cases' button
-      Navbar.testCase();
-      // 5. Verify user is navigated to test cases page successfully
-      testCases.testCase();
-    });
+describe("Test Case 7: Verify Test Cases Page", () => {
+  it("Test Cases Page", () => {
+    // 4. Click on 'Test Cases' button
+    Navbar.testCase();
+    // 5. Verify user is navigated to test cases page successfully
+    testCases.testCase();
+  });
+});
+
+describe("Test Case 8: Verify All Products and product detail page", () => {
+  it.only("Product page", () => {
+    // 4. Click on 'Products' button
+    Navbar.productPage();
+    // 5. Verify user is navigated to ALL PRODUCTS page successfully
+    cy.ccContainsVisible("All Products");
+    // 6. The products list is visible
+    cy.ccGetVisible(".features_items");
+    // 7. Click on 'View Product' of first product
+    productPage.productListClick(0);
+    // 8. User is landed to product detail page
+    cy.ccValidateUrl("/product_details/1");
+    // 9. Verify that detail detail is visible: product name, category, price, availability, condition, brand
+    productPage.productDetail();
+  });
 });

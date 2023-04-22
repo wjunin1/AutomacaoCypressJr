@@ -26,4 +26,8 @@ export default class Navbar {
   static testCase(){
     cy.contains(' Test Cases').click();
   }
+
+  static productPage(){
+    cy.contains(' Products').click();
+  }
 }
