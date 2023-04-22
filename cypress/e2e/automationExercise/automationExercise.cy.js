@@ -259,3 +259,18 @@ describe("Test Case 10: Verify Subscription in home page", () => {
     cy.ccContainsVisible("You have been successfully subscribed!");
   });
 });
+
+describe("Test Case 11: Verify Subscription in Cart page", () => {
+  it("Subscription in Cart Page", () => {
+    // 4. Click 'Cart' button
+    Navbar.cartPage();
+    // 5. Scroll down to footer
+    mainPage.scrollRoll("bottom");
+    // 6. Verify text 'SUBSCRIPTION'
+    cy.ccContainsVisible("Subscription");
+    // 7. Enter email address in input and click arrow button
+    mainPage.subscriptionEmail(emailfixo);
+    // 8. Verify success message 'You have been successfully subscribed!' is visible
+    cy.ccContainsVisible("You have been successfully subscribed!");
+  });
+});

@@ -23,11 +23,15 @@ export default class Navbar {
     cy.contains(" Contact us").click();
   }
 
-  static testCase(){
-    cy.contains(' Test Cases').click();
+  static testCase() {
+    cy.contains(" Test Cases").click();
   }
 
-  static productPage(){
-    cy.contains(' Products').click();
+  static productPage() {
+    cy.contains(" Products").click();
+  }
+
+  static cartPage() {
+    cy.contains(" Cart").click();
   }
 }
