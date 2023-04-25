@@ -3,7 +3,7 @@ export default class singup {
     cy.contains("New User Signup!").should("be.visible");
   }
 
-  static checkloginToAccount() {
+  static checkLoginToAccount() {
     cy.contains("Login to your account").should("be.visible");
   }
 
@@ -72,7 +72,7 @@ export default class singup {
     cy.get('[data-qa="continue-button"]').click();
   }
 
-  static loginAcess(email, password) {
+  static loginAccess(email, password) {
     cy.get('[data-qa="login-email"]').type(email);
     cy.get('[data-qa="login-password"]').type(password);
   }

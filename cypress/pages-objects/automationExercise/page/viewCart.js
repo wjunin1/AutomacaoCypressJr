@@ -1,3 +1,11 @@
+import {
+  address1,
+  address2,
+  country,
+  state,
+  city,
+  zipcode,
+} from "/cypress/fixtures/automationExercise/user1.json";
 export default class viewCart {
   static quantityCartProduct() {
     cy.get(".cart_quantity").its("length").should("eq", 2);
@@ -21,6 +29,6 @@ export default class viewCart {
   }
 
   static modalCheckoutToRegister() {
-    cy.get('.modal-body > :nth-child(2) > a > u').click();
+    cy.get(".modal-body > :nth-child(2) > a > u").click();
   }
 }

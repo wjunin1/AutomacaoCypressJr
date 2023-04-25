@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "main": "index.js",
   "devDependencies": {
+    "@faker-js/faker": "^7.6.0",
     "cypress": "^12.10.0"
   },
   "scripts": {
@@ -16,4 +17,3 @@
     "@badeball/cypress-cucumber-preprocessor": "^16.0.3"
   }
 }
-

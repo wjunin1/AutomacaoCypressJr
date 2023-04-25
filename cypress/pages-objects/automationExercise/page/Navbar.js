@@ -3,7 +3,7 @@ export default class Navbar {
     cy.get(".fa-lock").click();
   }
 
-  static loggedValidade(name) {
+  static loggedValidate(name) {
     cy.contains(name).should("be.visible");
   }
 
@@ -15,7 +15,7 @@ export default class Navbar {
     cy.contains(" Logout").click();
   }
 
-  static validadeUrlLogin() {
+  static validateUrlLogin() {
     cy.url().should("include", "/login");
   }
 

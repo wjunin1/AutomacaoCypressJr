@@ -33,6 +33,7 @@ import {
 import testCases from "../../pages-objects/automationExercise/page/testCases";
 import productPage from "../../pages-objects/automationExercise/page/productPage";
 import viewCart from "../../pages-objects/automationExercise/page/viewCart";
+import payment from "../../pages-objects/automationExercise/page/payment";
 beforeEach(() => {
   //1. Launch browser
   //2. Navigate to url 'http://automationexercise.com'
@@ -79,7 +80,7 @@ describe("Test Case 1: Register User", () => {
     // 15. Click 'Continue' button
     singup.continueButton();
     // 16. Verify that 'Logged in as username' is visible
-    Navbar.loggedValidade(name);
+    Navbar.loggedValidate(name);
     // 17. Click 'Delete Account' button
     Navbar.buttonDeleteUser();
     // 18. Verify that 'ACCOUNT DELETED!' is visible and click 'Continue' button
@@ -112,19 +113,19 @@ describe("Test Case 2: Login User with correct email and password", () => {
     singup.accountCreateButton();
     singup.accountCreateConfirm();
     singup.continueButton();
-    Navbar.loggedValidade(name);
+    Navbar.loggedValidate(name);
   });
   it("Login and delete account", () => {
     //4. Click on 'Signup / Login' button
     Navbar.singupLogin();
     // 5. Verify 'Login to your account' is visible
-    singup.checkloginToAccount();
+    singup.checkLoginToAccount();
     // 6. Enter correct email address and password
-    singup.loginAcess(email, password);
+    singup.loginAccess(email, password);
     // 7. Click 'login' button
     singup.buttonLogin();
     // 8. Verify that 'Logged in as username' is visible
-    Navbar.loggedValidade(name);
+    Navbar.loggedValidate(name);
     // 9. Click 'Delete Account' button
     Navbar.buttonDeleteUser();
     // 10. Verify that 'ACCOUNT DELETED!' is visible
@@ -137,9 +138,9 @@ describe("Test Case 3: Login User with incorrect email and password", () => {
     // 4. Click on 'Signup / Login' button
     Navbar.singupLogin();
     // 5. Verify 'Login to your account' is visible
-    singup.checkloginToAccount();
+    singup.checkLoginToAccount();
     // 6. Enter incorrect email address and password
-    singup.loginAcess("Incorrectemail@email", "1234");
+    singup.loginAccess("Incorrectemail@email", "1234");
     // 7. Click 'login' button
     singup.buttonLogin();
     // 8. Verify error 'Your email or password is incorrect!' is visible
@@ -152,17 +153,17 @@ describe("Test Case 4: Logout User", () => {
     // 4. Click on 'Signup / Login' button
     Navbar.singupLogin();
     // 5. Verify 'Login to your account' is visible
-    singup.checkloginToAccount();
+    singup.checkLoginToAccount();
     // 6. Enter correct email address and password
-    singup.loginAcess(emailfixo, passwordfixo);
+    singup.loginAccess(emailfixo, passwordfixo);
     // 7. Click 'login' button
     singup.buttonLogin();
     // 8. Verify that 'Logged in as username' is visible
-    Navbar.loggedValidade(nomefixo);
+    Navbar.loggedValidate(nomefixo);
     // 9. Click 'Logout' button
     Navbar.logoutButton();
     // 10. Verify that user is navigated to login page
-    Navbar.validadeUrlLogin();
+    Navbar.validateUrlLogin();
   });
 });
 
@@ -171,7 +172,7 @@ describe("Test Case 5: Register User with existing email", () => {
     // 4. Click on 'Signup / Login' button
     Navbar.singupLogin();
     // 5. Verify 'New User Signup!' is visible
-    singup.checkloginToAccount();
+    singup.checkLoginToAccount();
     // 6. Enter name and already registered email address
     singup.enterNameEmailNewRegister(name, emailfixo);
     // 7. Click 'Signup' button
@@ -313,7 +314,7 @@ describe("Test Case 13: Verify Product quantity in Cart", () => {
 });
 
 describe("Test Case 14: Place Order: Register while Checkout", () => {
-  it.only("Place order", () => {
+  it("Place order", () => {
     // 4. Add products to cart
     productPage.addProductToCart(2);
     productPage.productConfirmationCart("Continue Shopping");
@@ -352,15 +353,22 @@ describe("Test Case 14: Place Order: Register while Checkout", () => {
     singup.accountCreateConfirm();
     singup.continueButton();
     // 11. Verify ' Logged in as username' at top
-    Navbar.loggedValidade(name);
+    Navbar.loggedValidate(name);
     // 12.Click 'Cart' button
     Navbar.cartPage();
     // 13. Click 'Proceed To Checkout' button
+    cy.ccContainsClick("Proceed To Checkout");
     // 14. Verify Address Details and Review Your Order
+    payment.productDetail();
     // 15. Enter description in comment text area and click 'Place Order'
+    payment.enterDescription();
+    cy.ccContainsClick("Place Order");
     // 16. Enter payment details: Name on Card, Card Number, CVC, Expiration date
+    payment.paymentCard();
     // 17. Click 'Pay and Confirm Order' button
+    cy.ccGetClick('[data-qa="pay-button"]');
     // 18. Verify success message 'Your order has been placed successfully!'
+    cy.ccContainsVisible("Order Placed!");
     // 19. Click 'Delete Account' button
     Navbar.buttonDeleteUser();
     // 20. Verify 'ACCOUNT DELETED!' and click 'Continue' button
