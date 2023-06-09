@@ -375,3 +375,61 @@ describe("Test Case 14: Place Order: Register while Checkout", () => {
     mainPage.accountDeleted();
   });
 });
+
+describe("Test Case 15: Place Order: Register before Checkout", () => {
+  it.only("Register before checkout", () => {
+    // 4. Click 'Signup / Login' button
+    Navbar.singupLogin();
+    // 5. Fill all details in Signup and create account
+    singup.enterNameEmailNewRegister(name, email);
+    singup.buttonSingup();
+    singup.accountDetails(password, day, month, year);
+    singup.adressInformation(
+      firstName,
+      lastName,
+      company,
+      address1,
+      address2,
+      country,
+      state,
+      city,
+      zipcode,
+      mobileNumber
+    );
+    singup.accountCreateButton();
+    // 6. Verify 'ACCOUNT CREATED!' and click 'Continue' button
+    singup.accountCreateConfirm();
+    singup.continueButton();
+    // 7. Verify ' Logged in as username' at top
+    Navbar.loggedValidate(name);
+    // 8. Add products to cart
+    productPage.addProductToCart(2);
+    productPage.productConfirmationCart("Continue Shopping");
+    productPage.addProductToCart(4);
+    productPage.productConfirmationCart("Continue Shopping");
+    productPage.addProductToCart(14);
+    productPage.productConfirmationCart("Continue Shopping");
+    productPage.addProductToCart(18);
+    productPage.productConfirmationCart("Continue Shopping");
+    // 9. Click 'Cart' button
+    Navbar.cartPage();
+    // 10. Verify that cart page is displayed
+    // 11. Click Proceed To Checkout
+    cy.ccContainsClick("Proceed To Checkout");
+    // 12. Verify Address Details and Review Your Order
+    payment.productDetail();
+    // 13. Enter description in comment text area and click 'Place Order'
+    payment.enterDescription();
+    cy.ccContainsClick("Place Order");
+    // 14. Enter payment details: Name on Card, Card Number, CVC, Expiration date
+    payment.paymentCard();
+    // 15. Click 'Pay and Confirm Order' button
+    cy.ccGetClick('[data-qa="pay-button"]');
+    // 16. Verify success message 'Your order has been placed successfully!'
+    cy.ccContainsVisible("Order Placed!");
+    // 17. Click 'Delete Account' button
+    Navbar.buttonDeleteUser();
+    // 18. Verify 'ACCOUNT DELETED!' and click 'Continue' button
+    mainPage.accountDeleted();
+  });
+});
