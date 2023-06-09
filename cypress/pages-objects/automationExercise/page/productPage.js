@@ -43,4 +43,8 @@ export default class productPage {
   static addToCart() {
     cy.contains("Add to cart").click();
   }
+
+  static removeCart() {
+    cy.get("#product-2 > .cart_delete > .cart_quantity_delete").click();
+  }
 }
