@@ -12,7 +12,7 @@ export default class contactUs {
 
   static uploadFileContactUs() {
     cy.get("input[type=file]").selectFile(
-      "F:/4 Estudo/AutomacaoCypressJr/cypress/downloads/arquivotesteenvio.txt"
+      "cypress/downloads/arquivotesteenvio.txt"
     );
   }
 
