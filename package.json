@@ -4,7 +4,7 @@
   "main": "index.js",
   "devDependencies": {
     "@faker-js/faker": "^7.6.0",
-    "cypress": "^12.10.0"
+    "cypress": "^13.6.1"
   },
   "scripts": {
     "cypress:open": "npx cypress open"
@@ -12,8 +12,8 @@
   "keywords": [],
   "author": "Wellington Júnior",
   "license": "ISC",
-  "description": "",
   "dependencies": {
     "@badeball/cypress-cucumber-preprocessor": "^16.0.3"
-  }
+  },
+  "description": ""
 }

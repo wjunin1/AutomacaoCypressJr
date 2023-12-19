@@ -24,4 +24,18 @@ export default class mainPage {
   static viewProduct() {
     cy.contains("View Product").click();
   }
+  static womenCategory() {
+    cy.get('a[href*="#Women"]').click({ force: true });
+    //cy.contains("#Women").click();
+  }
+  static womenSubCategory() {
+    cy.contains("Dress ").click();
+  }
+  static menCategory() {
+    cy.get('a[href*="#Men"]').click({ force: true });
+    //cy.contains("#Women").click();
+  }
+  static menSubCategory() {
+    cy.contains("Jeans ").click();
+  }
 }
