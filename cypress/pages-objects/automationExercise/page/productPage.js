@@ -47,4 +47,32 @@ export default class productPage {
   static removeCart() {
     cy.get("#product-2 > .cart_delete > .cart_quantity_delete").click();
   }
+
+  static checkBrandsVisible() {
+    cy.get('[alt="Website for practice"]').should("be.visible");
+  }
+
+  static checkBrandBabyhugProductsVisible() {
+    const column = [
+      "Sleeves Printed Top - White",
+      "Half Sleeves Top Schiffli Detailing - Pink",
+      "Printed Off Shoulder Top - White",
+      "Sleeves Top and Short - Blue & Pink",
+    ];
+    column.forEach(function (value) {
+      cy.contains(value).should("be.visible");
+    });
+  }
+  static checkBrandBibaProductsVisible() {
+    const column = [
+      "Blue Cotton Indie Mickey Dress",
+      "Long Maxi Tulle Fancy Dress Up Outfits -Pink",
+      "Sleeveless Unicorn Print Fit & Flare Net Dress - Multi",
+      "Cotton Silk Hand Block Print Saree",
+      "Rust Red Linen Saree",
+    ];
+    column.forEach(function (value) {
+      cy.contains(value).should("be.visible");
+    });
+  }
 }

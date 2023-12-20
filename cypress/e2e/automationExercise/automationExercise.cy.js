@@ -525,7 +525,7 @@ describe("Test Case 17: Remove Products From Cart", () => {
   });
 });
 
-describe.only("Test Case 18: View Category Products", () => {
+describe("Test Case 18: View Category Products", () => {
   it("View Category products", () => {
     // 4. Click on 'Women' category
     mainPage.womenCategory();
@@ -538,5 +538,22 @@ describe.only("Test Case 18: View Category Products", () => {
     mainPage.menSubCategory();
     // 8. Verify that user is navigated to that category page
     cy.ccContainsVisible("Men - Jeans Products");
+  });
+});
+
+describe.only("Test Case 19: View & Cart Brand Products", () => {
+  it("View & Cart Brand Products", () => {
+    // 3. Click on 'Products' button
+    Navbar.productPage();
+    // 4. Verify that Brands are visible on left side bar
+    cy.ccGetVisible(".brands_products");
+    // 5. Click on any brand name
+    cy.ccContainsClick("Babyhug");
+    // 6. Verify that user is navigated to brand page and brand products are displayed
+    productPage.checkBrandBabyhugProductsVisible();
+    // 7. On left side bar, click on any other brand link
+    cy.ccContainsClick("Biba");
+    // 8. Verify that user is navigated to that brand page and can see products
+    productPage.checkBrandBibaProductsVisible();
   });
 });
