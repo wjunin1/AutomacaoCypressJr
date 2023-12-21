@@ -29,6 +29,7 @@ import {
   contactEmail,
   contactSubject,
   contactMessage,
+  reviewBlusa,
 } from "/cypress/fixtures/automationExercise/contactMensage.json";
 import testCases from "../../pages-objects/automationExercise/page/testCases";
 import productPage from "../../pages-objects/automationExercise/page/productPage";
@@ -582,5 +583,28 @@ describe("Test Case 20: Search Products and Verify Cart After Login", () => {
     Navbar.cartPage();
     // 12. Verify that those products are visible in cart after login as well
     cy.ccContainsVisible("Winter Top");
+  });
+});
+
+describe("Test Case 21: Add review on product", () => {
+  it("Add review on product", () => {
+    // 3. Click on 'Products' button
+    Navbar.productPage();
+    // 4. Verify user is navigated to ALL PRODUCTS page successfully
+    cy.ccContainsVisible("All Products");
+    // 5. Click on 'View Product' button
+    productPage.productListClick(0);
+    // 6. Verify 'Write Your Review' is visible
+    cy.get('a[href="#reviews"]')
+      .contains("Write Your Review")
+      .should("be.visible");
+    // 7. Enter name, email and review
+    cy.get("#name").type(nomefixo);
+    cy.get("#email").type(emailfixo);
+    cy.get("#review").type(reviewBlusa);
+    // 8. Click 'Submit' button
+    cy.ccGetClick("#button-review");
+    // 9. Verify success message 'Thank you for your review.'
+    cy.ccContainsVisible("Thank you for your review.");
   });
 });
