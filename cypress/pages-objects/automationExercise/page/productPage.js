@@ -75,4 +75,8 @@ export default class productPage {
       cy.contains(value).should("be.visible");
     });
   }
+
+  static productSearchVisible(produto) {
+    cy.contains(produto).should("be.visible");
+  }
 }

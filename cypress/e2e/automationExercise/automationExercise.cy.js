@@ -541,7 +541,7 @@ describe("Test Case 18: View Category Products", () => {
   });
 });
 
-describe.only("Test Case 19: View & Cart Brand Products", () => {
+describe("Test Case 19: View & Cart Brand Products", () => {
   it("View & Cart Brand Products", () => {
     // 3. Click on 'Products' button
     Navbar.productPage();
@@ -555,5 +555,32 @@ describe.only("Test Case 19: View & Cart Brand Products", () => {
     cy.ccContainsClick("Biba");
     // 8. Verify that user is navigated to that brand page and can see products
     productPage.checkBrandBibaProductsVisible();
+  });
+});
+
+describe("Test Case 20: Search Products and Verify Cart After Login", () => {
+  it("Search Products and Verify Cart After Login", () => {
+    // 3. Click on 'Products' button
+    Navbar.productPage();
+    // 4. Verify user is navigated to ALL PRODUCTS page successfully
+    cy.ccContainsVisible("All Products");
+    // 5. Enter product name in search input and click search button
+    productPage.productSearch("Winter Top");
+    // 7. Verify all the products related to search are visible
+    productPage.productSearchVisible("Winter Top");
+    // 8. Add those products to cart
+    productPage.addProductToCart(0);
+    productPage.productConfirmationCart("Continue Shopping");
+    // 9. Click 'Cart' button and verify that products are visible in cart
+    Navbar.cartPage();
+    cy.ccContainsVisible("Winter Top");
+    // 10. Click 'Signup / Login' button and submit login details
+    Navbar.singupLogin();
+    singup.loginAccess(email, password);
+    singup.buttonLogin();
+    // 11. Again, go to Cart page
+    Navbar.cartPage();
+    // 12. Verify that those products are visible in cart after login as well
+    cy.ccContainsVisible("Winter Top");
   });
 });
