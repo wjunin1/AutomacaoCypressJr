@@ -609,7 +609,7 @@ describe("Test Case 21: Add review on product", () => {
   });
 });
 
-describe.only("Test Case 22: Add to cart from Recommended items", () => {
+describe("Test Case 22: Add to cart from Recommended items", () => {
   it("Add to cart from Recommended items", () => {
     // 3. Scroll to bottom of page
     cy.scrollTo("bottom");
@@ -623,5 +623,64 @@ describe.only("Test Case 22: Add to cart from Recommended items", () => {
     productPage.productConfirmationCart("View Cart");
     // 7. Verify that product is displayed in cart page
     cy.get(".cart_price > p").should("not.be.empty");
+  });
+});
+
+describe.only("Test Case 23: Verify address details in checkout page", () => {
+  it("Verify address details in checkout page", () => {
+    // 4. Click 'Signup / Login' button
+    Navbar.singupLogin();
+    // 5. Fill all details in Signup and create account
+    singup.enterNameEmailNewRegister(name, email);
+    singup.buttonSingup();
+    singup.accountDetails(password, day, month, year);
+    singup.adressInformation(
+      firstName,
+      lastName,
+      company,
+      address1,
+      address2,
+      country,
+      state,
+      city,
+      zipcode,
+      mobileNumber
+    );
+    singup.accountCreateButton();
+    // 6. Verify 'ACCOUNT CREATED!' and click 'Continue' button
+    singup.accountCreateConfirm();
+    singup.continueButton();
+    // 7. Verify ' Logged in as username' at top
+    Navbar.loggedValidate(name);
+    // 8. Add products to cart
+    Navbar.productPage();
+    productPage.addProductToCart(2);
+    productPage.productConfirmationCart("Continue Shopping");
+    // 9. Click 'Cart' button
+    Navbar.cartPage();
+    // 10. Verify that cart page is displayed
+    cy.ccContainsVisible("Shopping Cart");
+    // 11. Click Proceed To Checkout
+    viewCart.proceedToCheckout();
+    // 12. Verify that the delivery address is same address filled at the time registration of account
+    cy.get("#address_delivery").contains(address1).should("be.visible");
+    cy.get("#address_delivery").contains(address2).should("be.visible");
+    cy.get("#address_delivery").contains(country).should("be.visible");
+    cy.get("#address_delivery").contains(state).should("be.visible");
+    cy.get("#address_delivery").contains(city).should("be.visible");
+    cy.get("#address_delivery").contains(zipcode).should("be.visible");
+    cy.get("#address_delivery").contains(mobileNumber).should("be.visible");
+    // 13. Verify that the billing address is same address filled at the time registration of account
+    cy.get("#address_invoice").contains(address1).should("be.visible");
+    cy.get("#address_invoice").contains(address2).should("be.visible");
+    cy.get("#address_invoice").contains(country).should("be.visible");
+    cy.get("#address_invoice").contains(state).should("be.visible");
+    cy.get("#address_invoice").contains(city).should("be.visible");
+    cy.get("#address_invoice").contains(zipcode).should("be.visible");
+    cy.get("#address_invoice").contains(mobileNumber).should("be.visible");
+    // 14. Click 'Delete Account' button
+    Navbar.buttonDeleteUser();
+    // 15. Verify 'ACCOUNT DELETED!' and click 'Continue' button
+    mainPage.accountDeleted();
   });
 });
