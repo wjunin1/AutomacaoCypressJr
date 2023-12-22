@@ -626,7 +626,7 @@ describe("Test Case 22: Add to cart from Recommended items", () => {
   });
 });
 
-describe.only("Test Case 23: Verify address details in checkout page", () => {
+describe("Test Case 23: Verify address details in checkout page", () => {
   it("Verify address details in checkout page", () => {
     // 4. Click 'Signup / Login' button
     Navbar.singupLogin();
@@ -681,6 +681,75 @@ describe.only("Test Case 23: Verify address details in checkout page", () => {
     // 14. Click 'Delete Account' button
     Navbar.buttonDeleteUser();
     // 15. Verify 'ACCOUNT DELETED!' and click 'Continue' button
+    mainPage.accountDeleted();
+  });
+});
+
+describe.only("Test Case 24: Download Invoice after purchase order", () => {
+  it("Download Invoice after purchase order", () => {
+    // 4. Add products to cart
+    Navbar.productPage();
+    productPage.addProductToCart(2);
+    productPage.productConfirmationCart("Continue Shopping");
+    // 5. Click 'Cart' button
+    Navbar.cartPage();
+    // 6. Verify that cart page is displayed
+    cy.ccContainsVisible("Shopping Cart");
+    // 7. Click Proceed To Checkout
+    viewCart.proceedToCheckout();
+    // 8. Click 'Register / Login' button
+    viewCart.modalCheckoutToRegister();
+    // 9. Fill all details in Signup and create account
+    singup.enterNameEmailNewRegister(name, email);
+    singup.buttonSingup();
+    singup.accountDetails(password, day, month, year);
+    singup.adressInformation(
+      firstName,
+      lastName,
+      company,
+      address1,
+      address2,
+      country,
+      state,
+      city,
+      zipcode,
+      mobileNumber
+    );
+    singup.accountCreateButton();
+    // 10. Verify 'ACCOUNT CREATED!' and click 'Continue' button
+    singup.accountCreateConfirm();
+    singup.continueButton();
+    // 11. Verify ' Logged in as username' at top
+    Navbar.loggedValidate(name);
+    // 12.Click 'Cart' button
+    Navbar.cartPage();
+    // 13. Click 'Proceed To Checkout' button
+    viewCart.proceedToCheckout();
+    // 14. Verify Address Details and Review Your Order
+    payment.productDetail();
+    // 15. Enter description in comment text area and click 'Place Order'
+    payment.enterDescription();
+    cy.ccContainsClick("Place Order");
+    // 16. Enter payment details: Name on Card, Card Number, CVC, Expiration date
+    payment.paymentCard();
+    // 17. Click 'Pay and Confirm Order' button
+    cy.ccGetClick('[data-qa="pay-button"]');
+    // 18. Verify success message 'Your order has been placed successfully!'
+    cy.ccContainsVisible("Order Placed!");
+    // 19. Click 'Download Invoice' button and verify invoice is downloaded successfully.
+    cy.ccContainsClick("Download Invoice");
+    cy.wait(3000);
+    const filePath = "cypress/downloads/invoice.txt";
+    cy.readFile(filePath).then((fileContent) => {
+      // Verifica se o conteúdo do arquivo é válido, se necessário
+      // assert your expectations on the file content here if needed
+      expect(fileContent).to.exist;
+    });
+    // 20. Click 'Continue' button
+    singup.continueButton();
+    // 21. Click 'Delete Account' button
+    Navbar.buttonDeleteUser();
+    // 22. Verify 'ACCOUNT DELETED!' and click 'Continue' button
     mainPage.accountDeleted();
   });
 });
