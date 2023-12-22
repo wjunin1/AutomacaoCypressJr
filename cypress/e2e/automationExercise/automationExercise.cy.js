@@ -608,3 +608,20 @@ describe("Test Case 21: Add review on product", () => {
     cy.ccContainsVisible("Thank you for your review.");
   });
 });
+
+describe.only("Test Case 22: Add to cart from Recommended items", () => {
+  it("Add to cart from Recommended items", () => {
+    // 3. Scroll to bottom of page
+    cy.scrollTo("bottom");
+    // 4. Verify 'RECOMMENDED ITEMS' are visible
+    cy.get(".recommended_items").should("be.visible");
+    // 5. Click on 'Add To Cart' on Recommended product
+    cy.get(
+      ".active > :nth-child(1) > .product-image-wrapper > .single-products > .productinfo > .btn"
+    ).click();
+    // 6. Click on 'View Cart' button
+    productPage.productConfirmationCart("View Cart");
+    // 7. Verify that product is displayed in cart page
+    cy.get(".cart_price > p").should("not.be.empty");
+  });
+});
