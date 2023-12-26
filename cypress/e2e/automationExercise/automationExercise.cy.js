@@ -768,3 +768,18 @@ describe("Test Case 25: Verify Scroll Up using Arrow button and Scroll Down func
     );
   });
 });
+
+describe("Test Case 26: Verify Scroll Up without Arrow button and Scroll Down functionality", () => {
+  it("Verify Scroll Up without Arrow button and Scroll Down functionality", () => {
+    // 4. Scroll down page to bottom
+    mainPage.scrollRoll("bottom");
+    // 5. Verify 'SUBSCRIPTION' is visible
+    cy.ccContainsVisible("Subscription");
+    // 6. Scroll up page to top
+    mainPage.scrollRoll("top");
+    // 7. Verify that page is scrolled up and 'Full-Fledged practice website for Automation Engineers' text is visible on screen
+    cy.ccContainsVisible(
+      "Full-Fledged practice website for Automation Engineers"
+    );
+  });
+});
