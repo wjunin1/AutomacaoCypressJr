@@ -685,7 +685,7 @@ describe("Test Case 23: Verify address details in checkout page", () => {
   });
 });
 
-describe.only("Test Case 24: Download Invoice after purchase order", () => {
+describe("Test Case 24: Download Invoice after purchase order", () => {
   it("Download Invoice after purchase order", () => {
     // 4. Add products to cart
     Navbar.productPage();
@@ -751,5 +751,20 @@ describe.only("Test Case 24: Download Invoice after purchase order", () => {
     Navbar.buttonDeleteUser();
     // 22. Verify 'ACCOUNT DELETED!' and click 'Continue' button
     mainPage.accountDeleted();
+  });
+});
+
+describe("Test Case 25: Verify Scroll Up using Arrow button and Scroll Down functionality", () => {
+  it("Verify Scroll Up using Arrow button and Scroll Down functionality", () => {
+    // 4. Scroll down page to bottom
+    mainPage.scrollRoll("bottom");
+    // 5. Verify 'SUBSCRIPTION' is visible
+    cy.ccContainsVisible("Subscription");
+    // 6. Click on arrow at bottom right side to move upward
+    cy.ccGetClick("#scrollUp");
+    // 7. Verify that page is scrolled up and 'Full-Fledged practice website for Automation Engineers' text is visible on screen
+    cy.ccContainsVisible(
+      "Full-Fledged practice website for Automation Engineers"
+    );
   });
 });
