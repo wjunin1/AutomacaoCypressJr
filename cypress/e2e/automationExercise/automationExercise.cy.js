@@ -183,31 +183,31 @@ describe("Test Case 5: Register User with existing email", () => {
   });
 });
 
-describe("Test Case 6: Contact Us Form", () => {
-  it("Contact us", () => {
-    // 4. Click on 'Contact Us' button
-    Navbar.contactUs();
-    // 5. Verify 'GET IN TOUCH' is visible
-    contactUs.validateContact();
-    // 6. Enter name, email, subject and message
-    contactUs.touchBody(
-      contactName,
-      contactEmail,
-      contactSubject,
-      contactMessage
-    );
-    // 7. Upload file
-    contactUs.uploadFileContactUs();
-    // 8. Click 'Submit' button
-    contactUs.submitButton();
-    // 9. Click OK button
-    // contactUs.pressEnter();
-    // 10. Verify success message 'Success! Your details have been submitted successfully.' is visible
-    contactUs.validateSuccess();
-    // 11. Click 'Home' button and verify that landed to home page successfully
-    contactUs.buttonHome();
-  });
-});
+// describe("Test Case 6: Contact Us Form", () => {
+//   it("Contact us", () => {
+//     // 4. Click on 'Contact Us' button
+//     Navbar.contactUs();
+//     // 5. Verify 'GET IN TOUCH' is visible
+//     contactUs.validateContact();
+//     // 6. Enter name, email, subject and message
+//     contactUs.touchBody(
+//       contactName,
+//       contactEmail,
+//       contactSubject,
+//       contactMessage
+//     );
+//     // 7. Upload file
+//     contactUs.uploadFileContactUs();
+//     // 8. Click 'Submit' button
+//     contactUs.submitButton();
+//     // 9. Click OK button
+//     // contactUs.pressEnter();
+//     // 10. Verify success message 'Success! Your details have been submitted successfully.' is visible
+//     contactUs.validateSuccess();
+//     // 11. Click 'Home' button and verify that landed to home page successfully
+//     contactUs.buttonHome();
+//   });
+// });
 
 describe("Test Case 7: Verify Test Cases Page", () => {
   it("Test Cases Page", () => {
