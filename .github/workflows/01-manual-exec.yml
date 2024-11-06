@@ -14,19 +14,13 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: '20'
-          cache: 'yarn'
-
-      - name: 'Instalando Yarn'
-        run: npm install -g yarn
-
-      - name: 'Limpando package-lock.json'
-        run: rm -f package-lock.json
+          cache: 'npm'
 
       - name: 'Instalando dependencias'
-        run: yarn install --frozen-lockfile
+        run: npm ci 
 
       - name: 'Instalando cypress'
-        run: yarn add cypress --dev
+        run: npm install cypress --save-dev
 
       - name: 'Test E2E'
-        run: yarn run e2e
+        run: npm run e2e
