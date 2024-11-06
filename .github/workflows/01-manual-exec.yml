@@ -5,19 +5,28 @@ on:
 
 jobs:
   e2e-tests:
-    runs-on: ubuntu-latest 
+    runs-on: ubuntu-latest
 
     steps:
       - uses: actions/checkout@v4
 
+      - name: 'Setup Node.js'
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'yarn'
+
       - name: 'Instalando Yarn'
         run: npm install -g yarn
 
+      - name: 'Limpando package-lock.json'
+        run: rm -f package-lock.json
+
       - name: 'Instalando dependencias'
-        run: yarn
+        run: yarn install --frozen-lockfile
 
       - name: 'Instalando cypress'
         run: yarn add cypress --dev
 
       - name: 'Test E2E'
-        run: yarn run e2e 
+        run: yarn run e2e
